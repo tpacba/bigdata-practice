@@ -1,0 +1,31 @@
+To run a command as administrator (user "root"), use "sudo <command>".
+See "man sudo_root" for details.
+
+tristan@tristan-VirtualBox:~$ sudo apt-get update
+tristan@tristan-VirtualBox:~$ sudo apt-get upgrade
+tristan@tristan-VirtualBox:~$ sudo apt-get autoremove
+tristan@tristan-VirtualBox:~$ ls
+Desktop  Documents  Downloads  Music  Pictures  Public  Templates  Videos
+tristan@tristan-VirtualBox:~$ cd Downloads/
+tristan@tristan-VirtualBox:~/Downloads$ cd ..
+tristan@tristan-VirtualBox:~$ cd Documents/
+tristan@tristan-VirtualBox:~/Documents$ cd ..
+tristan@tristan-VirtualBox:~$ cd Desktop/
+tristan@tristan-VirtualBox:~/Desktop$ touch hello.txt
+tristan@tristan-VirtualBox:~/Desktop$ cat >> hello.txt
+echo "Hello World"
+^C 
+tristan@tristan-VirtualBox:~/Desktop$ bash hello.txt
+Hello World
+tristan@tristan-VirtualBox:~/Desktop$ ls -a
+.  ..  hello.txt
+tristan@tristan-VirtualBox:~/Desktop$ rm -rf hello.txt
+tristan@tristan-VirtualBox:~/Desktop$ ls
+tristan@tristan-VirtualBox:~/Desktop$ mkdir test-folder
+tristan@tristan-VirtualBox:~/Desktop$ ls
+test-folder
+tristan@tristan-VirtualBox:~/Desktop$ cd test-folder/
+tristan@tristan-VirtualBox:~/Desktop/test-folder$ pwd
+/home/tristan/Desktop/test-folder
+tristan@tristan-VirtualBox:~/Desktop/test-folder$ touch bash-commands.txt
+tristan@tristan-VirtualBox:~/Desktop/test-folder$ cat >> bash-commands.txt
