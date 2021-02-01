@@ -25,7 +25,5 @@ insert into tab2(ename, job, sal) values ('JAMES', 'CLERK', 950);
 insert into tab2(ename, job, sal) values ('MILLER', 'CLERK', 1400);
 
 
--- SHOW EMPLOYEES GETTING SALARY GREAETER THAN AVERAGE SALARY --
-select * from tab2 where sal > (select avg(sal) from tab2);
-
-
+-- SHOW EMPLOYEES GETTING SALARY GREAETER THAN AVERAGE SALARY of the job they are working in --
+select * from tab2 a where a.sal > (select avg(b.sal) from tab2 b where a.job = b.job);
