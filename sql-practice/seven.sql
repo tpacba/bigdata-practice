@@ -1,12 +1,12 @@
 use test;
 
-create table if not exists tab6 (
+create table if not exists tab7 (
 	mail_id varchar(255)
 );
 
-insert into tab6(mail_id) values ('siva.k.academy@gmail.com');
-insert into tab6(mail_id) values ('jeevan.anand.kumar@yahoo.com');
-insert into tab6(mail_id) values ('ravi.guru.raj@outlook.com');
+insert into tab7(mail_id) values ('siva.k.academy@gmail.com');
+insert into tab7(mail_id) values ('jeevan.anand.kumar@yahoo.com');
+insert into tab7(mail_id) values ('ravi.guru.raj@outlook.com');
 
 
 -- write a query to extract first, middle, last name and email domain from given email id --
@@ -15,7 +15,7 @@ with fn as (
 	select 
 		mail_id as email,
 		substring(mail_id,1,regexp_instr(mail_id, '\\.') - 1) as first_name
-	from tab6
+	from tab7
 ),
 mn as (
 	select 
