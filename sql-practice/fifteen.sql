@@ -22,13 +22,6 @@ begin
 end
 //
 
-delimiter //
-create function string_day (num int)
-	begin
-		
-    end
-//
-
 call month(sysdate());
 
 select day_of_week, count(day_of_week) from (
