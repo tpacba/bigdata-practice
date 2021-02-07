@@ -1,0 +1,29 @@
+https://www.eclipse.org/downloads/ - 64 bit download
+
+/home/hadoop/Downloads/eclipse-inst-jre-linux64/eclipse-installer
+
+Select JVM
+
+file -> new -> java project
+
+ex: myproj1
+
+select add to working set -> Finish
+
+Configure jar files
+
+myproj1 -> right click -> Build path
+-> Configure build path -> Libraries -> Add external jar files.
+
+select following jars
+/usr/lib/hadoop-*.*/share/hadoop
+
+Goto common -> 
+
+
+/usr/lib/hadoop-*.*/share/hadoop/mapreduce/hadoop-core.jar
+/usr/lib/hadoop-*.*/lib/commons-cli-*.*.jar
+
+WordCountMapper.java
+WordCountReducer.java
+WordCountJob.java
