@@ -1,8 +1,9 @@
 use test;
 
-create table tab8 (
+create table if not exists tab8 (
 	mail_id varchar(255)
 );
+truncate table tab8;
 
 insert into tab8(mail_id) values ('siva.k.academy@gmail.com');
 insert into tab8(mail_id) values ('jeevan.anand@yahoo.com');
@@ -25,8 +26,8 @@ with dn as (
 		no_periods, 
         user_name,
 		case when no_periods = 0 then user_name
-		when no_periods > 0 then substring(user_name,1,locate('.',user_name) - 1)
-		else null
+			when no_periods > 0 then substring(user_name,1,locate('.',user_name) - 1)
+			else null
 		end as first_name
 	from dn
 ), mn as (
@@ -36,14 +37,21 @@ with dn as (
 		no_periods, 
         user_name,
         first_name,
-        case when no_periods > 1 then substring(replace(user_name, concat(first_name,'.'), ''), 1,locate('.',replace(user_name, concat(first_name,'.'), '')) - 1)
-        else null
+        case when no_periods > 1 
+			then substring(replace(user_name, concat(first_name,'.'), ''), 1,locate('.',replace(user_name, concat(first_name,'.'), '')) - 1)
+			else null
         end as middle_name
 	from fn
 )
-select mail_id, domain_name, first_name, middle_name,
-case when no_periods = 1 then replace(user_name, concat(first_name,'.'),'')
-when no_periods > 1 then replace(user_name, concat(first_name,'.',middle_name,'.'),'')
-else null
-end as last_name
+select 
+	mail_id, 
+    domain_name, 
+    first_name, 
+    middle_name,
+	case when no_periods = 1 
+		then replace(user_name, concat(first_name,'.'),'')
+		when no_periods > 1 
+        then replace(user_name, concat(first_name,'.',middle_name,'.'),'')
+		else null
+	end as last_name
 from mn;

@@ -1,13 +1,11 @@
 use test;
 
-DROP TABLE tab2;
 create table if not exists tab2(
 	ename varchar(25),
 	job varchar(25),
 	sal int
-)
-
-select * from tab2;
+);
+truncate table tab2;
 
 insert into tab2(ename, job, sal) values ('KING', 'PRESIDENT', 5100);
 insert into tab2(ename, job, sal) values ('BLAKE', 'MANAGER', 2850);
@@ -26,4 +24,10 @@ insert into tab2(ename, job, sal) values ('MILLER', 'CLERK', 1400);
 
 
 -- SHOW EMPLOYEES GETTING SALARY GREAETER THAN AVERAGE SALARY of the job they are working in --
-select * from tab2 a where a.sal > (select avg(b.sal) from tab2 b where a.job = b.job);
+select * 
+from tab2 a 
+where a.sal > 
+	(select avg(b.sal)
+    from tab2 b 
+    where a.job = b.job
+    );

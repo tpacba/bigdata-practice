@@ -1,9 +1,10 @@
 use test;
 
-create table emp_t(empno int,
+create table if not exists emp_t(empno int,
                    ename varchar(100),
                    mgr   int,
                    sal   int);
+truncate table emp_t;
 
 Insert into EMP_T (EMPNO,ENAME,MGR,SAL) values (7839,'KING',null,1000);
 Insert into EMP_T (EMPNO,ENAME,MGR,SAL) values (7698,'BLAKE',7839,700);
@@ -23,6 +24,7 @@ Insert into EMP_T (EMPNO,ENAME,MGR,SAL) values (7934,'MILLER',7782,300);
 select * from emp_t;
 
 -- write a sql to compute the group salary of all the employees --
+
 select *
 from emp_t as t1
 left join emp_t as t2 on t2.mgr = t1.empno

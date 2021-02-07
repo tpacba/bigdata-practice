@@ -1,14 +1,16 @@
 use test;
 
-CREATE TABLE stu_tab (
-    sno     int,
-    name   VARCHAR(30),
-    mark   int,
+CREATE TABLE if not exists stu_tab (
+    sno int,
+    name VARCHAR(30),
+    mark int,
     result varchar(1),
- dept   varchar(5),
- year     int
+	dept varchar(5),
+	year int
 );
+truncate table stu_tab;
 
+drop procedure if exists insert_values;
 delimiter //
 create procedure insert_values()
 BEGIN
@@ -24,10 +26,6 @@ END
 
 call insert_values();
 
-drop table stu_tab
-drop procedure insert_values
-select * from stu_tab
-
 update stu_tab set result='P' 
 where mark >=35;
 update stu_tab set result='F' 
@@ -38,6 +36,8 @@ update stu_tab set dept='ECE' where dept='2';
 update stu_tab set dept='EEE' where dept='3';
 update stu_tab set dept='MECH' where dept='4';
 update stu_tab set dept='CVE' where dept='5';
+
+select * from stu_tab;
 
 -- write query to print year-wise and dept-wise --
 select 

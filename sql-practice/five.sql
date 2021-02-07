@@ -4,8 +4,10 @@ use test;
 
 create table if not exists tab5(
 	rownum int
-)
+);
+truncate table tab5;
 
+drop procedure if exists num_iteration;
 delimiter //
 create procedure num_iteration(n int)
 begin

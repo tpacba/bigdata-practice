@@ -1,14 +1,16 @@
 use test;
 
-create table tab13a (
+create table if not exists tab13a (
 	service_code char(2),
     service_name varchar(255)
 );
+truncate table tab13a;
 
-create table tab13b (
+create table if not exists tab13b (
 	product_code char(3),
     service_order varchar(255)
 );
+truncate table tab13b;
 
 insert into tab13a (service_code,service_name) values ('a', 'service-a');
 insert into tab13a (service_code,service_name) values ('b', 'service-b');
@@ -21,6 +23,6 @@ insert into tab13b (product_code, service_order) values ('p3', 'd,a,c,b');
 insert into tab13b (product_code, service_order) values ('p4', 'a,b,c,d');
 insert into tab13b (product_code, service_order) values ('p5', 'd,c,b,a,b');
 
--- write sql to replaece the comma separate dcode with its respoective description --
+-- write sql to replace the comma separate dcode with its respoective description --
 
 select * from tab13b;

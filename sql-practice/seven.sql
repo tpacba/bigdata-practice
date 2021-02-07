@@ -3,11 +3,11 @@ use test;
 create table if not exists tab7 (
 	mail_id varchar(255)
 );
+truncate table tab7;
 
 insert into tab7(mail_id) values ('siva.k.academy@gmail.com');
 insert into tab7(mail_id) values ('jeevan.anand.kumar@yahoo.com');
 insert into tab7(mail_id) values ('ravi.guru.raj@outlook.com');
-
 
 -- write a query to extract first, middle, last name and email domain from given email id --
 

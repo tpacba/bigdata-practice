@@ -1,11 +1,13 @@
 -- reverse string without using reverse function --
 
-create temporary table char_table (
+create temporary table if not exists char_table (
 	id int auto_increment,
 	letter varchar(1),
     primary key(id)
 );
+truncate table char_table;
 
+drop procedure if exists split_to_char;
 delimiter //
 	create procedure split_to_char (phrase varchar(255))
     begin
@@ -18,9 +20,6 @@ delimiter //
     end
 //
 
-drop table char_table;
-truncate table char_table;
-drop procedure split_to_char;
-
 call split_to_char('welcome');
+
 select * from char_table;

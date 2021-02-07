@@ -7,9 +7,8 @@ create table if not exists tab1(
 	col3 varchar(1),
 	col4 varchar(1),
 	col5 varchar(1)
-)
+);
 
-select * from tab1;
 truncate table tab1;
 
 insert into tab1(s_no,col1,col2,col3,col4,col5) values (1,'a','b','c','d','e');

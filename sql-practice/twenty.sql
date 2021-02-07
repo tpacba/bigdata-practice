@@ -1,9 +1,10 @@
-create table tab20a(
+create table if not exists tab20a(
 	emp_no int auto_increment,
     ename varchar(255)
 );
+truncate table tab20a;
 
-create table tab20b(
+create table if not exists tab20b(
 	id int auto_increment,
 	empno1 int,
     ename1 varchar(255),
@@ -11,8 +12,10 @@ create table tab20b(
     ename2 varchar(255),
     primary key(id)
 );
+truncate table tab20b;
 
 insert into tab20a(ename) select ename from emp_t; 
+
 select * from tab20a;
 
 -- write insert statement to split first table with one column to second table with two columns --
