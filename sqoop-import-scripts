@@ -1,0 +1,67 @@
+# mysql
+
+sqoop list-databases \
+--connect jdbc:mysql://localhost:3306 \
+--username root \
+--password root
+
+sqoop import \
+--connect jdbc:mysql://localhost/marketing \
+--username root \
+--password root \
+--table users -m 1 \
+--target-dir /user/marketing/users
+
+sqoop import \
+--connect jdbc:mysql://localhost/marketing \
+--username root \
+--password root \
+--table user_ids -m 1 \
+--target-dir /user/marketing/user_ids
+
+# postgresql
+
+sqoop list-databases \
+--connect jdbc:postgresql://localhost:5432/ \
+--username postgres \
+--password password
+
+sqoop import \
+--connect jdbc:postgresql://localhost:5432/postgres \
+--username postgres \
+--password password \
+--table spotify -m 1 \
+--target-dir /user/marketing/spotify
+
+sqoop import \
+--connect jdbc:postgresql://localhost:5432/postgres \
+--username postgres \
+--password password \
+--table youtube -m 1 \
+--target-dir /user/marketing/youtube
+
+# oracle
+
+sqoop list-databases \
+--connect jdbc:oracle:thin:@localhost:1521:xe \
+--username hr \
+--password hr
+
+sqoop import \
+--connect jdbc:oracle:thin:@localhost:1521:xe \
+--username hr -password hr \
+--table spotify_artist_ids \
+--columns artist_id,artist_name \
+--target-dir /user/marketing/spotify_artist_ids -m 1
+
+sqoop import \
+--connect jdbc:oracle:thin:@localhost:1521:xe \
+--username hr -password hr \
+--table youtube_creators_ids \
+--columns creator_id,creator_username \
+--target-dir /user/marketing/youtube_creators_ids -m 1
+
+
+
+
+
