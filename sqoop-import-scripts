@@ -12,6 +12,8 @@ sqoop import \
 --table {TABLE_NAME} -m 1 \
 --target-dir {HADOOP_TABLE_PATH}
 
+Note: The "-m 1" argument gives your table a primary key if there isn't one already.
+
 # postgresql
 
 sqoop list-databases \
@@ -25,6 +27,8 @@ sqoop import \
 --password {POSTGRES_PASSWORD} \
 --table {TABLE_NAME} -m 1 \
 --target-dir {HADOOP_TABLE_PATH}
+
+Note: Your database name and username should be the same. If needed, alter your password in the PSQL shell (http://itsfoss.com/install-postgresql-ubuntu).
 
 # oracle
 
@@ -40,7 +44,7 @@ sqoop import \
 --columns {COL1,COL2,COL3...} \
 --target-dir {HADOOP_TABLE_PATH} -m 1
 
-
+Note: I altered the username/password to hr/hr some weeks ago in the sqlplus shell. The default was system/oracle. Test your oracle-xe connection in DBeaver to see what they are. Columns are added because I kept running across errors saying columns aren't existent, but I know some people didn't need to have that argument in there code.
 
 
 
@@ -111,8 +115,5 @@ sqoop import \
 --table youtube_creators_ids \
 --columns creator_id,creator_username \
 --target-dir /user/marketing/youtube_creators_ids -m 1
-
-
-
 
 
