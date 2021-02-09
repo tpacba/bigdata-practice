@@ -6,6 +6,57 @@ sqoop list-databases \
 --password root
 
 sqoop import \
+--connect jdbc:mysql://localhost/{MYSQL_DATABASE_NAME} \
+--username root \
+--password root \
+--table {TABLE_NAME} -m 1 \
+--target-dir {HADOOP_TABLE_PATH}
+
+# postgresql
+
+sqoop list-databases \
+--connect jdbc:postgresql://localhost:5432/ \
+--username {POSTGRES_DATABASE_NAME} \
+--password {POSTGRES_PASSWORD}
+
+sqoop import \
+--connect jdbc:postgresql://localhost:5432/{POSTGRES_DATABASE_NAME} \
+--username {POSTGRES_DATABASE_NAME} \
+--password {POSTGRES_PASSWORD} \
+--table {TABLE_NAME} -m 1 \
+--target-dir {HADOOP_TABLE_PATH}
+
+# oracle
+
+sqoop list-databases \
+--connect jdbc:oracle:thin:@localhost:1521:xe \
+--username hr \
+--password hr
+
+sqoop import \
+--connect jdbc:oracle:thin:@localhost:1521:xe \
+--username hr -password hr \
+--table {TABLE_NAME} \
+--columns {COL1,COL2,COL3...} \
+--target-dir {HADOOP_TABLE_PATH} -m 1
+
+
+
+
+
+
+
+
+<<<<<Examples>>>>>
+
+# mysql
+
+sqoop list-databases \
+--connect jdbc:mysql://localhost:3306 \
+--username root \
+--password root
+
+sqoop import \
 --connect jdbc:mysql://localhost/marketing \
 --username root \
 --password root \
