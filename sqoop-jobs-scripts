@@ -1,0 +1,70 @@
+# Create sqoop jobs to import from mysql
+
+sqoop job --create import_users_table \
+-- import \
+--connect jdbc:mysql://localhost/marketing \
+--username root \
+--password root \
+--table users -m 1 \
+--target-dir /user/hadoop/input/mysql/users
+
+sqoop job --create import_user_ids_table \
+-- import \
+--connect jdbc:mysql://localhost/marketing \
+--username root \
+--password root \
+--table user_ids -m 1 \
+--target-dir /user/hadoop/input/mysql/user_ids
+
+sqoop job --list
+
+sqoop job --exec import_users_table && sqoop job --exec import_user_ids_table
+
+
+# Create sqoop jobs to import from postgresql
+
+sqoop job --create import_spotify_table \
+-- import \
+--connect jdbc:postgresql://localhost:5432/postgres \
+--username postgres \
+--password password \
+--table spotify -m 1 \
+--target-dir /user/hadoop/input/postgresql/spotify
+
+sqoop job --create import_youtube_table \
+-- import \
+--connect jdbc:postgresql://localhost:5432/postgres \
+--username postgres \
+--password password \
+--table youtube -m 1 \
+--target-dir /user/hadoop/input/postgresql/youtube
+
+sqoop job --list
+
+sqoop job --exec import_spotify_table && sqoop job --exec import_youtube_table
+
+
+# Create sqoop jobs to import from oracle
+
+sqoop job --create import_spotify_artist_ids_table \
+-- import \
+--connect jdbc:oracle:thin:@localhost:1521:xe \
+--username hr -password hr \
+--table spotify_artist_ids \
+--columns artist_id,artist_name \
+--target-dir /user/hadoop/input/oracle/spotify_artist_ids -m 1
+
+sqoop job --create import_youtube_creators_ids_table \
+-- import \
+--connect jdbc:oracle:thin:@localhost:1521:xe \
+--username hr -password hr \
+--table youtube_creators_ids \
+--columns creator_id,creator_username \
+--target-dir /user/hadoop/input/oracle/youtube_creators_ids -m 1
+
+sqoop job --list
+
+sqoop job --exec import_spotify_artist_ids_table && sqoop job --exec import_youtube_creators_ids_table
+
+
+

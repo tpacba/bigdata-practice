@@ -8,7 +8,7 @@ Link: https://archive.apache.org/dist/hive/hive-2.0.1/
 2. Move the file to /usr/local/software and extract it. Move the extracted file to /usr/local/hadoop-ecosystems and rename it as hive-2.0.1-bin
 
 3. Goto /usr/local/hadoop-ecosystems/hive-2.0.1-bin/conf and Copy paste hive-default.xml.template file
-and rename the new file as hive-default.xml
+and rename the new file as hive-site.xml
 
 4.Edit ~/.bashrc file and add HIVE configurations.
 
