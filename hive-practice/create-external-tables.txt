@@ -1,0 +1,105 @@
+-------------------------------------------------------------------------
+
+# MYSQL_TABLES
+
+-------------------------------------------------------------------------
+
+create external table users(user_id int, first_name string, last_name string, birthdate date, city string, state string, country string)
+row format delimited
+fields terminated by ','
+location '/user/hadoop/external/users';
+
+load data inpath '/user/hadoop/input/mysql/users' into table users;
+
+-------------------------------------------------------------------------
+
+create external table user_socials(id int, user_id int, social_site string, username_used string, email_used string)
+row format delimited
+fields terminated by ','
+location '/user/hadoop/external/user_socials';
+
+load data inpath '/user/hadoop/input/mysql/user_socials' into table user_socials;
+
+-------------------------------------------------------------------------
+
+# POSTGRESQL_TABLES
+
+-------------------------------------------------------------------------
+
+create external table song_listened(id int, song_id int, date_listened date)
+row format delimited
+fields terminated by ','
+location '/user/hadoop/external/song_listened';
+
+load data inpath '/user/hadoop/input/postgresql/song_listened' into table song_listened;
+
+-------------------------------------------------------------------------
+
+create external table youtube_watched(id int, video_id int, date_watched date)
+row format delimited
+fields terminated by ','
+location '/user/hadoop/external/youtube_watched';
+
+load data inpath '/user/hadoop/input/postgresql/youtube_watched' into table youtube_watched;
+
+-------------------------------------------------------------------------
+
+# ORACLE TABLES
+
+-------------------------------------------------------------------------
+
+create external table artist_events(event_id int, event_name string, event_date date, artist_id int, city string, state string, country string)
+row format delimited
+fields terminated by ','
+location '/user/hadoop/external/artist_events';
+
+load data inpath '/user/hadoop/input/oracle/artist_events' into table artist_events;
+
+-------------------------------------------------------------------------
+
+create external table creator_events(event_id int, event_name string, event_date date, creator_id int, city string, state string, country string)
+row format delimited
+fields terminated by ','
+location '/user/hadoop/external/creator_events';
+
+load data inpath '/user/hadoop/input/oracle/creator_events' into table creator_events;
+
+-------------------------------------------------------------------------
+
+create external table spotify_artists(artist_id int, name string)
+row format delimited
+fields terminated by ','
+location '/user/hadoop/external/spotify_artists';
+
+load data inpath '/user/hadoop/input/oracle/spotify_artists' into table spotify_artists;
+
+-------------------------------------------------------------------------
+
+create external table spotify_songs(song_id int, song_name string, artist_id int)
+row format delimited
+fields terminated by ','
+location '/user/hadoop/external/spotify_songs';
+
+load data inpath '/user/hadoop/input/oracle/spotify_songs' into table spotify_songs;
+
+-------------------------------------------------------------------------
+
+create external table youtube_creators(creator_id int, username string)
+row format delimited
+fields terminated by ','
+location '/user/hadoop/external/youtube_creators';
+
+load data inpath '/user/hadoop/input/oracle/youtube_creators' into table youtube_creators;
+
+-------------------------------------------------------------------------
+
+create external table youtube_videos(video_id int, video_name string, creator_id int)
+row format delimited
+fields terminated by ','
+location '/user/hadoop/external/youtube_videos';
+
+load data inpath '/user/hadoop/input/oracle/youtube_videos' into table youtube_videos;
+
+-------------------------------------------------------------------------
+
+
