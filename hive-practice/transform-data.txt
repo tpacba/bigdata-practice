@@ -1,0 +1,8 @@
+create table user_socials_cnt(social_site string, social_site_cnt int)
+row format delimited
+fields terminated by ',';
+
+insert overwrite table user_socials_cnt
+select social_site, count(social_site)
+from user_socials
+group by social_site;
