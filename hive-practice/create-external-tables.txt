@@ -51,7 +51,7 @@ load data inpath '/user/hadoop/input/postgresql/youtube_watched' into table yout
 create external table artist_events(event_id int, event_name string, event_date date, artist_id int, city string, state string, country string)
 row format delimited
 fields terminated by ','
-location '/user/hadoop/external/artist_events';
+location '/user/hadoop/input/oracle/artist_events';
 
 load data inpath '/user/hadoop/input/oracle/artist_events' into table artist_events;
 
