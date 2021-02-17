@@ -1,0 +1,93 @@
+
+---------------------------------------------------------------
+
+create table hbase_artist_events(event_id int, event_name string, event_date date, artist_id int, city string, state string, country string)
+stored by 'org.apache.hadoop.hive.hbase.HBaseStorageHandler'
+with serdeproperties("hbase.columns.mapping"=":key,x:event_name,x:event_date,x:artist_id,x:city,x:state,x:country");
+
+insert into hbase_artist_events
+select * from artist_events;
+
+---------------------------------------------------------------
+
+create table hbase_creator_events(event_id int, event_name string, event_date date, creator_id int, city string, state string, country string)
+stored by 'org.apache.hadoop.hive.hbase.HBaseStorageHandler'
+with serdeproperties("hbase.columns.mapping"=":key,x:event_name,x:event_date,x:creator_id,x:city,x:state,x:country");
+
+insert into hbase_creator_events
+select * from creator_events;
+
+---------------------------------------------------------------
+
+create table hbase_song_listened(id int, song_id int, date_listened date)
+stored by 'org.apache.hadoop.hive.hbase.HBaseStorageHandler'
+with serdeproperties("hbase.columns.mapping"=":key,x:song_id,x:date_listened");
+
+insert into hbase_song_listened
+select * from song_listened;
+
+---------------------------------------------------------------
+
+create table hbase_spotify_artists(artist_id int, name string)
+stored by 'org.apache.hadoop.hive.hbase.HBaseStorageHandler'
+with serdeproperties("hbase.columns.mapping"=":key,x:name");
+
+insert into hbase_spotify_artists
+select * from spotify_artists;
+
+---------------------------------------------------------------
+
+create table hbase_spotify_songs(song_id int, song_name string, artist_id int)
+stored by 'org.apache.hadoop.hive.hbase.HBaseStorageHandler'
+with serdeproperties("hbase.columns.mapping"=":key,x:song_name,x:artist_id");
+
+insert into hbase_spotify_songs
+select * from spotify_songs;
+
+---------------------------------------------------------------
+
+create table hbase_user_socials(id int, user_id int, social_site string, username_used string, email_used string)
+stored by 'org.apache.hadoop.hive.hbase.HBaseStorageHandler'
+with serdeproperties("hbase.columns.mapping"=":key,x:user_id,x:social_site,x:username_used,x:email_used");
+
+insert into hbase_user_socials
+select * from user_socials;
+
+---------------------------------------------------------------
+
+create table hbase_users(user_id int, first_name string, last_name string, birthdate date, city string, state string, country string)
+stored by 'org.apache.hadoop.hive.hbase.HBaseStorageHandler'
+with serdeproperties("hbase.columns.mapping"=":key,x:first_name,x:last_name,x:birthdate,x:city,x:state,x:country");
+
+insert into hbase_users
+select * from users;
+
+---------------------------------------------------------------
+
+create table hbase_youtube_creators(creator_id int, username string)
+stored by 'org.apache.hadoop.hive.hbase.HBaseStorageHandler'
+with serdeproperties("hbase.columns.mapping"=":key,x:username");
+
+insert into hbase_youtube_creators
+select * from youtube_creators;
+
+---------------------------------------------------------------
+
+create table hbase_youtube_videos(video_id int, video_name string, creator_id int)
+stored by 'org.apache.hadoop.hive.hbase.HBaseStorageHandler'
+with serdeproperties("hbase.columns.mapping"=":key,x:video_name,x:creator_id");
+
+insert into hbase_youtube_videos
+select * from youtube_videos;
+
+---------------------------------------------------------------
+
+create table hbase_youtube_watched(id int, video_id int, date_watched date)
+stored by 'org.apache.hadoop.hive.hbase.HBaseStorageHandler'
+with serdeproperties("hbase.columns.mapping"=":key,x:video_id,x:date_watched");
+
+insert into hbase_youtube_watched
+select * from youtube_watched;
+
+
+
