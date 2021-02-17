@@ -1,0 +1,102 @@
+Regions
+-------
+Regions are the tables that are split up 
+and spread across the region servers.
+
+RegionServers
+-------------
+Software processes (often called daemons) 
+you activate to store and retrieve data in HBase (Hadoop Database).
+
+The region servers have regions that -
+
+Communicate with the client.
+Handle read and write requests for all the regions under it.
+Decide the size of the region by following the region size thresholds.
+
+
+HMaster
+------------
+Is responsible for region assignment 
+as well as DDL (create, delete tables) operations.
+
+
+Quorum
+------
+The Quorum is a list of hosts on which ZooKeeper servers are running.
+
+
+HBase Tables – Logical collection of rows stored in individual partitions known as Regions.
+HBase Row – Instance of data in a table.
+RowKey -Every entry in an HBase table is identified and indexed by a RowKey.
+Columns - For every RowKey an unlimited number of attributes can be stored.
+Column Family – Data in rows is grouped together as column families and all columns are stored together in a low level storage file known as HFile.
+
+
+1. Goto https://downloads.apache.org/hbase/stable/
+
+2. wget https://downloads.apache.org/hbase/stable/hbase-2.2.5-bin.tar.gz
+
+3. tar -xvf hbase-2.2.5-bin.tar.gz
+
+4. Open hbase-env.sh
+
+export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64
+export HBASE_REGIONSERVERS=/usr/local/hadoop-ecosystem/hbase-2.2.5/conf/regionservers
+export HBASE_MANAGES_ZK=true
+
+
+5. Open bashrc file and add the path
+
+#Hbase path
+export HBASE_HOME=/usr/local/hadoop-ecosystem/hbase-2.2.5
+export PATH=$PATH:$HBASE_HOME/bin
+
+
+6. Open hbase-site.xml
+
+
+<property>
+<name>hbase.rootdir</name>
+<value>hdfs://localhost:9000/hbase</value>
+</property>
+
+<property>
+<name>hbase.cluster.distributed</name>
+<value>true</value>
+</property>
+
+<property>
+<name>hbase.zookeeper.quorum</name>
+<value>localhost</value>
+</property>
+
+<property>
+<name>dfs.replication</name>
+<value>1</value>
+</property>
+
+<property>
+<name>hbase.zookeeper.property.clientPort</name>
+<value>2181</value>
+</property>
+
+<property>
+<name>hbase.zookeeper.property.dataDir</name>
+<value>/usr/local/hadoop-ecosystem/hbase/zookeeper</value>
+</property>
+
+
+
+7. Start hadoop daemons
+
+8. start-hbase.sh
+
+9.HQuorumPeer
+  HMaster
+  HRegionServer
+  
+10. To login into hbase shell
+hbase shell
+
+
