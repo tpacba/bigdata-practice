@@ -16,6 +16,7 @@ on spotify_songs.artist_id=spotify_artists.artist_id;
 select * from join_spotify_songs_artists;
 
 
+
 #2
 drop table if exists join_youtube_videos_creators;
 
@@ -30,6 +31,7 @@ left join youtube_creators
 on youtube_videos.creator_id=youtube_creators.creator_id;
 
 select * from join_youtube_videos_creators;
+
 
 
 #3
@@ -48,6 +50,7 @@ on artist_events.artist_id=spotify_artists.artist_id;
 select * from join_artist_events;
 
 
+
 #4
 drop table if exists join_creator_events;
 
@@ -62,6 +65,7 @@ left join youtube_creators
 on creator_events.creator_id=youtube_creators.creator_id;
 
 select * from join_creator_events;
+
 
 
 #5
@@ -97,11 +101,67 @@ select * from cnt_songs;
 
 
 
+#7
+drop table cnt_videos;
+
+create table cnt_videos(creator_id int,username string,cnt_videos int)
+stored by 'org.apache.hadoop.hive.hbase.HBaseStorageHandler'
+with serdeproperties("hbase.columns.mapping"=":key,x:username,x:cnt_videos");
+
+insert into table cnt_videos
+select creator_id,username,count(*) as cnt_videos
+from join_youtube_videos_creators
+group by creator_id,username;
+
+select * from cnt_videos;
 
 
 
+#8
+drop table if exists recent_song_listened;
+
+create table recent_song_listened(id int,user_id int,song_id int,song_name string,date_listened date,rank int)
+stored by 'org.apache.hadoop.hive.hbase.HBaseStorageHandler'
+with serdeproperties("hbase.columns.mapping"=":key,x:user_id,x:song_id,x:song_name,x:date_listened,x:rank");
+
+insert into table recent_song_listened
+select id,user_id,song_listened.song_id,song_name,date_listened,rank() over (partition by user_id order by date_listened desc)
+from song_listened
+left join join_spotify_songs_artists
+on song_listened.song_id=join_spotify_songs_artists.song_id;
+
+select * from recent_song_listened;
 
 
+
+#9
+drop table if exists recent_video_watched;
+
+create table recent_video_watched(id int,user_id int,video_id int,video_name string,date_watched date,rank int)
+stored by 'org.apache.hadoop.hive.hbase.HBaseStorageHandler'
+with serdeproperties("hbase.columns.mapping"=":key,x:user_id,x:video_id,x:video_name,x:date_watched,x:rank");
+
+insert into table recent_video_watched
+select id,user_id,youtube_watched.video_id,video_name,date_watched,rank() over (partition by user_id order by date_watched desc)
+from youtube_watched
+left join join_youtube_videos_creators
+on youtube_watched.video_id=join_youtube_videos_creators.video_id;
+
+
+
+#10
+drop table if exists list_user_socials;
+
+create table list_user_socials(user_id int,list_social_site array <string>,list_username_used array <string>,list_email_used array <string>)
+stored by 'org.apache.hadoop.hive.hbase.HBaseStorageHandler'
+with serdeproperties("hbase.columns.mapping"=":key,x:list_social_site,x:list_username_used,x:list_email_used");
+
+insert into list_user_socials
+select user_id,collect_list(social_site),collect_set(username_used),collect_set(email_used)
+from join_user_socials
+group by user_id;
+
+select * from list_user_socials;
 
 show tables;
 
