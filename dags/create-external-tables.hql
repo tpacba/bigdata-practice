@@ -4,14 +4,14 @@ use marketingdb;
 
 drop table if exists users;
 
-create external table users(user_id int, first_name string, last_name string, birthdate date, city string, state string, country string)
+create external table users(birthdate date, city string, country string, first_name string, last_name string, state string, user_id int)
 row format delimited
 fields terminated by ','
 location '/user/hadoop/input/mysql/users';
 
 drop table if exists user_socials;
 
-create external table user_socials(id int, user_id int, social_site string, username_used string, email_used string)
+create external table user_socials(email_used string,id int, social_site string, user_id int, username_used string)
 row format delimited
 fields terminated by ','
 location '/user/hadoop/input/mysql/user_socials';
@@ -22,14 +22,14 @@ location '/user/hadoop/input/mysql/user_socials';
 
 drop table if exists song_listened;
 
-create external table song_listened(id int, song_id int, date_listened date)
+create external table song_listened(id int, song_id int, date_listened date, user_id int)
 row format delimited
 fields terminated by ','
 location '/user/hadoop/input/postgresql/song_listened';
 
 drop table if exists youtube_watched;
 
-create external table youtube_watched(id int, video_id int, date_watched date)
+create external table youtube_watched(id int, video_id int, date_watched date, user_id int)
 row format delimited
 fields terminated by ','
 location '/user/hadoop/input/postgresql/youtube_watched';
