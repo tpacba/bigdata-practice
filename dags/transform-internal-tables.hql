@@ -1,6 +1,6 @@
 use marketingdb;
 
-#1
+-- #1
 drop table if exists join_spotify_songs_artists;
 
 create table join_spotify_songs_artists(song_id int, song_name string, artist_id int, name string)
@@ -17,7 +17,7 @@ select * from join_spotify_songs_artists;
 
 
 
-#2
+-- #2
 drop table if exists join_youtube_videos_creators;
 
 create table join_youtube_videos_creators(video_id int, video_name string, creator_id int, username string)
@@ -34,7 +34,7 @@ select * from join_youtube_videos_creators;
 
 
 
-#3
+-- #3
 drop table if exists join_artist_events;
 
 create table join_artist_events(event_id int, event_name string, event_date date, artist_id int, name string, city string, state string, country string)
@@ -51,7 +51,7 @@ select * from join_artist_events;
 
 
 
-#4
+-- #4
 drop table if exists join_creator_events;
 
 create table join_creator_events(event_id int, event_name string, event_date date, creator_id int, username string, city string, state string, country string)
@@ -68,7 +68,7 @@ select * from join_creator_events;
 
 
 
-#5
+-- #5
 drop table if exists join_user_socials;
 
 create table join_user_socials(id int,user_id int,first_name string,last_name string,city string,state string,country string,social_site string,username_used string,email_used string)
@@ -85,7 +85,7 @@ select * from join_user_socials;
 
 
 
-#6
+-- #6
 drop table if exists cnt_songs;
 
 create table cnt_songs(artist_id int,name string,cnt_songs int)
@@ -101,7 +101,7 @@ select * from cnt_songs;
 
 
 
-#7
+-- #7
 drop table cnt_videos;
 
 create table cnt_videos(creator_id int,username string,cnt_videos int)
@@ -117,7 +117,7 @@ select * from cnt_videos;
 
 
 
-#8
+-- #8
 drop table if exists recent_song_listened;
 
 create table recent_song_listened(id int,user_id int,song_id int,song_name string,date_listened date,rank int)
@@ -134,7 +134,7 @@ select * from recent_song_listened;
 
 
 
-#9
+-- #9
 drop table if exists recent_video_watched;
 
 create table recent_video_watched(id int,user_id int,video_id int,video_name string,date_watched date,rank int)
@@ -149,7 +149,7 @@ on youtube_watched.video_id=join_youtube_videos_creators.video_id;
 
 
 
-#10
+-- #10
 drop table if exists list_user_socials;
 
 create table list_user_socials(user_id int,list_social_site array <string>,list_username_used array <string>,list_email_used array <string>)
@@ -162,6 +162,8 @@ from join_user_socials
 group by user_id;
 
 select * from list_user_socials;
+
+
 
 show tables;
 
