@@ -102,7 +102,7 @@ select * from cnt_songs;
 
 
 -- #7
-drop table cnt_videos;
+drop table if exists cnt_videos;
 
 create table cnt_videos(creator_id int,username string,cnt_videos int)
 stored by 'org.apache.hadoop.hive.hbase.HBaseStorageHandler'
