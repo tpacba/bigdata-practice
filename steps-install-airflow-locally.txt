@@ -1,0 +1,87 @@
+how to install apache airflow on ubuntu locally
+
+1. install pip for linux
+
+	sudo apt-get install python3-pip python-dev
+
+2. verify installation
+
+	pip3  --version
+
+4. make an “airflow” directory and “dags" folder inside (you’ll store your python dag files here)
+
+	mkdir ~/airflow
+	cd ~/airflow
+	mkdir dags
+
+5. (if needed) uninstall any old apache-airflow installations using pip
+
+	sudo pip3 uninstall apache-airflow
+
+6. install apache-airflow using pip
+
+	sudo pip3 install apache-airflow
+
+7. initialize apache-airflow database (default is sqlite)
+
+	airflow db init
+
+8. create admin user and password
+
+	airflow users create \
+	--username admin \
+	--firstname Peter \ 
+	--lastname Parker \
+	--role Admin \
+	--email spiderman@superhero.org
+
+9. open another terminal, start the web server and let it run
+
+	airflow web server --port 8080
+
+10. open another terminal, start the scheduler and let it run
+
+	airflow scheduler
+
+11. visit localhost:8080 in the browser to access the GUI
+
+12. enter your username and password (from step 8)
+
+13. create test_dag.py in airflow/dags
+
+	cd ~/airflow/dags
+	touch test_dag.py
+	sudo gedit test_dag.py
+
+14. create a separate bash script in your desktop that prints “Hello”
+
+	cd ~/Desktop
+	touch hello.sh
+	sudo gedit hello.sh
+	
+	#inside hello.sh
+	echo “Hello”
+
+15. replace t2 with:
+	
+	task_id=‘say_hello’,
+	depends_on_past=False,
+	bash_command=‘~/Desktop/hello.sh ‘, #include a space after the .sh
+	dag=dag
+
+16. trigger the ‘tutorial’ dag in localhost:8080 and check logs when finished
+
+
+
+## Some configurations: 
+
+you can open airflow.cfg in ~/airflow and configure “dags_folder” in order to direct apache-airflow where your python dag files will be
+
+In test_dag.py, the module BashOperator is coming from is deprecated. Use instead:
+
+	from date time import timedelta
+	import airflow
+	import airflow from DAG
+	from airflow.operators.bash import BashOperator
+
+i’m using the default sqlite as my database so far but you can use mysql or postgres by configuring the sql_alchemy_conn in airflow.cfg
