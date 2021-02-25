@@ -1,0 +1,25 @@
+CLOUD COMPUTING:
+- sharing data in a remote server
+
+IAAS,PAAS,SAAS:
+- infrastructure as a service
+- platform as a service
+- software as a service
+
+AWS:
+- compute (EC2)
+- storage (S3-objectstorage,glacier)
+- databases (RDS)
+- analytics (QuickStart,SageMaker)
+- applications
+- datawarehouse (RedShift)
+
+CLOUDERA:
+- cloudera manager
+- hue: interactive query editor
+- impala: datawarehouse
+- apache sentry: data governance/administration
+
+HORTONWORKS:
+- ambari(GUI for sqoop,spark,kafka)
+- apache ranger(better than sentry)

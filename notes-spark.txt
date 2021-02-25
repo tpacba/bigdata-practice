@@ -1,0 +1,62 @@
+Nifi task(Submission: Wednesday(2/24) )
+----------
+1. FTP a file from remote server to your local server.
+2. Move it to HDFS
+3. Move this data from HDFS to mysql/postgres/mssql/hive external database
+
+MAP REDUCE:
+- framework based on key value
+- disadvantage of slow processing, dependant on disc input & output
+
+SPARK:
+- in-memory distributed computing framework used for faster parallel computing and with lazy evaluation
+- much faster processing in RAM primarily rather than disc, slightly slower running on secondary disc
+- only processing, no storage (depends on hdfs,aws-s3,azure cloud,oraclegen2,gcs,etc. for storage)
+- entire framework is written in scala (JVM processes)
+- can develop spark program using java,scala,python,R,(maybe .NET)
+- lazy evaluation: transformations/processes depends on the end 'action' trigger
+
+
+SPARK ARCHITECTURE:
+- 'driver' running on master node, no high availability
+- 'executor' running on worker node, has distributed-parallel computing
+- driver: 
+1. negotiating resources with the cluster manager(YARN,mesos,spark-standalone,kubernetes) & nodemanager(containers,application-master,task)
+2. creating the DAG(vertices/RDD & edges/narrow-wide-transformations),prepares logical plan for physical evaluation
+a. narrow-transformation: no shuffling-movement of data from one node to another worker node
+b. wide-transformation: computation & communication between worker nodes, slower processing and larger bandwidth
+- jobs > stages > tasks
+- every action = new job created
+- stages = new wide transformation
+- task = lowest unit of work in spark program
+
+EXECUTOR:
+- similar to a JVM processor
+- submitted through spark-submit, optimally decided by the you the developer
+- allocates for clusters of missions
+- make sure to allocate 40% space for hadoop daemons and yarn processes and off heap memory head(for garbage collection), will run into out of memory error
+- maximum give 5 core to 1 executor
+
+STORAGE LEVELS:
+- 'cache' is memory only
+- 'persist' is disc only, memory & disc, memory and disc serialized, memory and disc deserialized
+- default cache first till you run out, then persist for the rest
+
+DATATYPES:
+- RDD = resilient distributed dataset, basic construct in spark, distributed among the worker nodes, resilient recreation of partitions at loss
+- DATAFRAME = two dimensional table/view of data which has schema
+- DATASETS = strictly typed collection of data, not applicable for python
+
+CATALYST OPTIMIZER,TUNGSTEN
+- internal performance tuning
+1.catalyst optimizer:
+a. rule-based optimization: preparing the logical plan
+b. cost-based optimization: keep track of historical information
+2. tungsten: handling optimal cpu and memory
+
+SPARK SESSION:
+1. SPARK SESSION - to user dataframe api
+2. SPARK CONTEXT - to use RDD api
+3. SPARK CONF - config, execture drive,
+4. HIVE CONTEXT - "Hive query"
+SQL CONTEXT - "query"
