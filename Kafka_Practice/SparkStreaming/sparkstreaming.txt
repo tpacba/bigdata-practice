@@ -1,0 +1,31 @@
+SparkStreaming
+--------------
+
+Continuous streaming of data. Ex IOT sensors, weblogs etc
+
+Two types:
+1. Discretized Streaming(DStreams)
+High throughput, fault-tolerant stream processing of live data streams.
+Has its own transformation and actions.
+The underlying data API is RDD
+The execution engine is Spark core engine
+
+2. Structure Streaming
+Enables scalable, fault-tolerant stream processing of live data streams.
+Structured streaming, Has its own transformation and actions.
+The underlying data API is Dataframes
+The execution engine is Spark SQL engine
+
+SparkContext - RDD - SparkCore
+SQLContext - Dataframes - SparkSQL - Deprecated from Spark2.X
+HiveContext - Dataframes with Hive SparkSql - Deprecated from Spark2.X
+StreamingContext - DStream - SparkStreaming
+SparkSession - RDD, Dataframes, Dataframes with Hive Support, Streaming
+
+
+
+
+
+
+
+

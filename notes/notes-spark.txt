@@ -4,6 +4,7 @@ Nifi task(Submission: Wednesday(2/24) )
 2. Move it to HDFS
 3. Move this data from HDFS to mysql/postgres/mssql/hive external database
 
+
 MAP REDUCE:
 - framework based on key value
 - disadvantage of slow processing, dependant on disc input & output
@@ -55,7 +56,7 @@ b. cost-based optimization: keep track of historical information
 2. tungsten: handling optimal cpu and memory
 
 SPARK SESSION:
-1. SPARK SESSION - to user dataframe api
+1. SPARK SESSION - to use dataframe api
 2. SPARK CONTEXT - to use RDD api
 3. SPARK CONF - config, execture drive,
 4. HIVE CONTEXT - "Hive query"

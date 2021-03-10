@@ -8,11 +8,31 @@ IAAS,PAAS,SAAS:
 
 AWS:
 - compute (EC2)
-- storage (S3-objectstorage,glacier)
-- databases (RDS)
+- elastic map reduce (EMR): hadoop, hive, hbase, hue, yarn, spark
+- storage (S3 - object based storage, standard(hot) -> glacier(cold))
+- relational data service(RDS) - rdbms databases (Aurora)
 - analytics (QuickStart,SageMaker)
 - applications
 - datawarehouse (RedShift)
+- noSQL (DynamoDB)
+- graphQL (Neptune)
+- query editor (Athena)
+- ETL-tool (GLUE)
+- data migration service (DMS)
+- lambda: trigger pipelines
+- SNS: simple notification service 
+- SQS: simple queuing service
+- kinesis
+a. streams - ingesting real time data
+b. firehouse - near real time data
+c. analytics - query the real time data
+- cloud formation: to create and save templates
+- cloud watch: monitoring the services
+
+DATABRICKS:
+
+
+AZURE:
 
 CLOUDERA:
 - cloudera manager
@@ -23,3 +43,5 @@ CLOUDERA:
 HORTONWORKS:
 - ambari(GUI for sqoop,spark,kafka)
 - apache ranger(better than sentry)
+
+

@@ -1,0 +1,13 @@
+table design in creating data warehouse
+
+dimension table >> fact table << dimension table
+
+STAR schema - can only have one dimension table
+SNOWFLAKE schema - can have multiple dimension table
+
+SCD (slowly changing dimensions)
+
+CDC (change data capture)
+-attinuity
+-ibm cdc
+-or create a staging table in database & determine the delta

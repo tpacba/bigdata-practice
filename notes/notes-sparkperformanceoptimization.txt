@@ -1,0 +1,28 @@
+- lambdas serverless function
+- triggered in data lake to send to cloud databases
+
+
+Spark performance tuning
+1. tuning # of executors and right amount of memory
+60% to processing, 40% to hadoop daemons & yarn processes
+
+2a. using broadcast variable (RDD), broadcast joins (dataframes)
+caching small table to worker nodes 
+
+2b. accumulator (counter in map reduce program)
+mutable variable available in driver node
+
+3. fixing data skewness
+hash partitioning default, range partitioning
+key salting (adding primary key by adding row_num)
+
+- storage levels in spark: cache (memory only), persist (disk only, memory & disk, memory & serialized, memory & deserialized)
+- checkpointing: physically store data in disk
+
+coalesce: shrinking # of partitions, minimizing shuffling
+repartition: increasing # of partitions, more shuffling, reduce network
+
+cap theorem
+- consistency
+- availability
+- partition tolerance

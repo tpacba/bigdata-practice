@@ -1,0 +1,49 @@
+ARCHITECTURE:
+- RDBMS > Producer > Kafka clusters > Consumers > HDFS
+- platforms: opensource & confluent
+
+KAFKA CLUSTERS:
+- broker/server, within topic
+- messages sent/stored as RP3-partitions
+- for high availability and avoid copies, # of partitions <= # of kafka brokers
+
+ZOOKEEPER:
+- for distributed system
+- assign one partition as leader, assign rest as followers
+- if one partition goes down, new assignments
+
+CONSUMER GROUP:
+- set of consumers with unique group id
+- consumers collect from all partitions then follow each other to process data
+- parallel processing and partitions
+- remove the awareness from the consumer of a partition
+- each partition must be consumed by a consumer
+- to act like a queue, put all your consumers in one group
+- to act like a pub sub, put each consumer in unique groups
+
+SPARK STREAMING:
+- microbatches: batching data
+- windowing: period in which data will be processed
+- slide interval
+
+producer, consumer
+kafka broker, topic
+append only
+distribute partitioning
+
+queue: messaged once, consumed once
+pubsub: messaged once, consumed multiple times
+
+distributed
+
+
+ssh-keygen -t rsa -f ~/.ssh/ubuntu-ssh-key -C tristanpacman
+
+ssh -i ~/.ssh/ubuntu-ssh-key tristanpacman@34.75.133.135
+
+
+cd /usr/local/software/kafka_2.12-2.7.0/
+bin/zookeeper-server-start.sh config/zookeeper.properties
+bin/kafka-server-start.sh config/server.properties
+
+

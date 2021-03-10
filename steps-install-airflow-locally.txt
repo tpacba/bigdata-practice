@@ -52,8 +52,7 @@ how to install apache airflow on ubuntu locally
 	cd ~/airflow/dags
 	touch test_dag.py
 	sudo gedit test_dag.py
-
-14. create a separate bash script in your desktop that prints “Hello”
+14. create a separate bash script in your desktop that print “Hello”
 
 	cd ~/Desktop
 	touch hello.sh
@@ -84,4 +83,4 @@ In test_dag.py, the module BashOperator is coming from is deprecated. Use instea
 	import airflow from DAG
 	from airflow.operators.bash import BashOperator
 
-i’m using the default sqlite as my database so far but you can use mysql or postgres by configuring the sql_alchemy_conn in airflow.cfg
+3. i’m using the default sqlite as my database so far but if you can use mysql or postgres by configuring the sql_alchemy_conn in airflow.cfg

@@ -34,7 +34,7 @@ Column Family – Data in rows is grouped together as column families and all co
 
 
 1. Goto https://downloads.apache.org/hbase/stable/
-
+i
 2. wget https://downloads.apache.org/hbase/stable/hbase-2.2.5-bin.tar.gz
 
 3. tar -xvf hbase-2.2.5-bin.tar.gz

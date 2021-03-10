@@ -40,12 +40,15 @@ insert into emp values(106,'stu',60000,'m',11);
 
 create table customer(id integer(3), name varchar(20), age integer(2), salary integer(10));
 
-insert into customer values(101,"Ajay",27,10000);
-insert into customer values(102,"sanjay",37,20000);
-insert into customer values(103,"Arjun",22,30000);
-insert into customer values(104,"pavan",25,40000);
-insert into customer values(105,"tharun",45,50000);
-insert into customer values(106,"manoj",55,60000);
+insert into customer values(101,'Ajay',27,10000);
+insert into customer values(102,'sanjay',37,20000);
+insert into customer values(103,'Arjun',22,30000);
+insert into customer values(104,'pavan',25,40000);
+insert into customer values(105,'tharun',45,50000);
+insert into customer values(106,'manoj',55,60000);
+
+create table customer(id int, name varchar(20), age int, salary int);
+insert into customer (id, name, age, salary) values (101,"Ajay",27,1000);
 
 sqoop version
 
@@ -68,6 +71,8 @@ sqoop import \
 --password root \
 --table emp \
 --target-dir /user/hadoop/input/emp
+
+
 
 hadoop fs -ls /sqimp1
 
