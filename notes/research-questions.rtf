@@ -1,0 +1,93 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2578
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww14160\viewh14880\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 Big data is a set of methodologies, tools, and frameworks that provide solutions to the problem of handling extremely large amounts of information or data. The five V\'92s of big data refer to the attributes that define it: volume, variety, veracity, velocity, and value. Volume refers to the sheer volume of big data. Variety refers to the structured, semi-structured, and unstructured data that are handled and stored. Veracity refers to the trustworthiness of data. Velocity refers to the frequency of incoming data and how streaming applications are growing to be the forefront of big data development. Value refers to the objective of the data.\
+\
+Hadoop is one solution of the problem of handling and storing big data. It\'92s a framework built to process large amounts of data. It has three major components: HDFS, MapReduce, and YARN. HDFS, or Hadoop Distributed File System, is Hadoop\'92s storage unit, MapReduce is the processing unit, and YARN is the resource management unit. HDFS relies on a master-slave architecture in which there is a namenode (master) and multiple datanodes (slaves). The namenode is responsible for the workings of the datanodes and the storage of metadata while the datanodes are the ones reading, writing, processing, and replicating data. By default, data is divided into blocks of 128MB then replicated three times among the datanodes. In a MapReduce process, the input dataset is first split into chunks of data and parallel processed within the datanodes. Secondly, the chunks of data are mapped and assigned a key and a value. Then, the key-value pairs are shuffled and sorted based on their keys. Finally, the aggregation takes place in the reduce phase where the final output is obtained. YARN is readily available in Hadoop version 2. It\'92s responsible for managing the cluster resources and performs job scheduling. As the resource manager, it communicates with each of the nodes\'92 node manager to monitor the resource usage when a job request comes in.\
+\
+Hadoop v1 used MapReduce for resource management and data processing which overloaded the performance. Hadoop v2 uses YARN and an updated version of MapReduce for better resource allocation. v2 replaced the daemons JobTracker and TaskTracker with Resource Manager and Node Manager (using YARN). v2 includes high-availability which includes multiple namenodes (active and standby) the eliminate the problem of single point failure in v1.\
+\
+The checkpoint node creates checkpoints for the namespace persisted by the namenode in case of failure. It downloads the fsimage and edit logs from the active namenode, merges them locally to be always readily available for reading, and uploads the new image back to the active namenode.\
+\
+An HDFS block is the physical representation of data that can be read and written filled by default to 128MB. Input Split is the logical representation of data (doesn\'92t contain actual data, but an address reference to the data) present in the block used for data processing. It forms logical grouping of incomplete blocks as a single block for MapReduce operations.\
+\
+Hadoop is not a database but a distributed file system that can store and process massive amounts of data across multiple nodes. It can use data warehouses like Hive to abstract the file system into tables. RDBMS is an actual database that is structured in rows and columns which makes it unable to store and process the same amounts of data Hadoop can. Hadoop can also store unstructured data unlike RDBMS which is limited to structured and semi-structured.\
+\
+Structured data is clearly defined, searchable, quantitative, stored in data warehouses, and exists in predefined formats. Unstructured data is stored as its complex native format, qualitative, stored in data lakes, and exists in various formats.\
+\
+Hadoop streaming is a utility that allows you to create and run map and reduce jobs as the mapper and the reducer. Using a mapper python script and a reducer python script, Hadoop streaming will create map and reduce jobs, submit the jobs to an appropriate cluster, and monitor the progress of the job.\
+\
+Most common input formats in Hadoop are FileInputFormat, TextInputFormat, KeyValueTextInputFormat, SequenceFileInputFormat. FileInputFormat is the base class. It specifies the input directory where data files are present, reads all the files, then divides these files into InputSplits. TextInputFormat reads each line of each input file as a separate record. KeyValueTextInputFormat also reads each line but breaks the line into key and value with the \'91/t\'92 character. SequenceFileInputFormat reads sequential files.\
+\
+Avro is most useful for data serialization because of its language neutrality stored in JSON format and multi-purpose storage format within Spark. It has robust support for schema evolution by handling schema changes where old programs can read new data and vice versa. It stores metadata with the data but also specification of an independent schema for reading the file.\
+\
+Parquet is a columnar storage format that, unlike row-based, skips over non-relevant data to perform aggregate queries much quicker. It consists of the header, data block, and footer (metadata). Each data block has partitioned It supports advanced nested data structures and optimized for large data queries. \
+\
+JSON is an open - standard file format, similar to a dictionary, that stores metadata and supports schema evolution.\
+\
+ORC stands for optimized row columnar file format. It\'92s mainly used for large file compression but performs poorly in write performance.\
+\
+A block is the basic storage of data in Hadoop within a datanode. A block scanner is used to identify corrupt blocks by verifying the checksum of the data during a write operation.\
+\
+Namenode creates a namespace including an fsimage and edit log. Checkpoint node periodically downloads the fsimage and edit log and merges it locally to create checkpoints. Backup node also creates checkpoints but also maintains up-to-date memory of the namespace of the active Namenode. \
+\
+Namenode runs on port 50070. Task Tracker runs on port 50060. Job Tracker runs on port 50030.\
+\
+You can overwrite the replication factor using -setrep.\
+\
+Rack awareness is the concept in which the namenode chooses the closest datanodes for reading and writing HDFS files by maintaining the rack ids of each datanode. It improves data reliability, data availability, cluster performance, and network bandwidth.\
+\
+Edge nodes, separate from master and worker nodes, act as gateways/connection-portals for end-users to access the worker nodes. Edge nodes includes services like HiveServer2 servers, Impala LoadBalancer (Proxy server for Impala Daemons), Flume agents, config files and web interfaces like HttpFS, Oozie servers, Hue servers, etc. Edge nodes allow the network architecture to stay closed from the outside world, to uniform the data/work distribution, and to stage the space for final data.\
+\
+To configure the replication factor and block size for hdfs, modify dfs.replication and dfs.block.size in hdfs-site.xml accordingly. You can also change the replication factor on a per-file basis by using the -setrep command.\
+\
+Disk Balancer was introduced to address Intra-Node Skew, the uneven distribution of blocks across disks, by distributing data blocks between the volumes of the datanode while the datanode is still alive (no need for decommissioning).\
+\
+HDFS snapshots are read-only copies of the file system. You can create these instantaneously to be used for backup and recover using the commands -allowSnapshot & -createSnapshot.\
+\
+Zookeeper is a hadoop admin tool that primarily focuses on synchronization between the distributed applications. It has a file system called znodes that store coordinated exchange messages from the distributed applications instead of files or directories.\
+\
+Context Object allows the mapper/reduces to interact with the rest of the hadoop ecosystem. It passes important information available during map operations.\
+\
+3 core methods of a reducer are setup (configure various parameters for reducer), reduce (define the task for the set of values that share a key), and cleanup (clean intermediate/temporary files).\
+\
+Partitioning happens between the map and reduce phases where each mapper output is partitioned and recorded according to the key-value. Outputs with the same key-value go into the same partition. Shuffling is the process by which the intermediate output from mappers is transferred onto the reduces. Sorting in MapReduce covers the merging and sorting of the map outputs.\
+\
+Custom partitioners are written in a MapReduce job by overriding the getPartition method.\
+\
+Hadoop has two side data distribution techniques: using the job configuration and distributed cache. Modifying the job configuration should only be done with small data (kilobytes) as it can place more pressure in the memory usage of the hadoop daemons. Otherwise, using hadoop\'92s distributed cache mechanism is suggested.\
+\
+The MapReduce program executes in three stages: map, shuffle and sort, and reduce. The mapping stage processes the input data and outputs intermediate key-value pairs. Shuffling and sorting groups the intermediate key-value pairs for the reducers. The reducing stage reduces the sets that share a key and outputs the final value. \
+\
+Spark streaming is an extension of the core Spark API that allows scalable, fault-tolerant processing system that supports both batch and streaming workloads. It uses a key abstraction called Discretized Stream or DStream in which RDDs divide the stream of data into small batches. This single framework allows fast recovery from failures and stragglers, better load balancing and usage, combining streaming data with static datasets and interactive queries, and native integration with advanced processing libraries (i.e. Spark SQL and MLlib).\
+\
+The Spark execution model begins when a Spark application triggers the launch of a job to a single driver and a set of executors. The driver manages the job flow and schedules tasks for the executors. The executors are responsible for performing the tasks as well as storing any data in cache. The tasks, also referred to in code as dataset transformations, are collected and executed together as a stage. This technique is called lazy evaluations in which transformations are only examined and formulated, not executed, until an action is called.\
+\
+Windowing allows the use of the new RDD and the old RDDs by creating a window based on a specified time interval. A simple windowing function will create a new DStream that is computed by applying the windowing parameters to the old DStream.\
+\
+Stream-stream joins of dataframes can be done similar to joining two batch dataframes/datasets using the .join method.\
+\
+Paired RDD is a dataset with a key-value pair. For example, the RDD output of a mapping stage in a word count program is a paired RDD with key-value.\
+\
+Broadcast variables are used with caching read-only large datasets in executors. To avoid network overhead by shipping a normal variable to each transformation and action, broadcast variables are shipped once to all executors and cached for future reference.\
+\
+Narrow transformations require data to live in a single partition where a limited subset of partition is used to calculate the result, often the result of map and filter functions. Wide transformations require data to live in many partitions, the result of groupbykey and reducebykey functions.\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+}
